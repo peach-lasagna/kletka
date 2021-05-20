@@ -1,0 +1,10 @@
+[package]
+name = "kletka"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+macroquad = "0.3"
+
+# [target.'cfg(windows)'.dependencies]
+# winapi = { version = "0.3", features = ["winuser"] }
