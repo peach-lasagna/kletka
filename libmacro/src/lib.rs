@@ -27,7 +27,7 @@ pub fn BaseObject(args: TokenStream, input: TokenStream) -> TokenStream {
     return quote! {
         #item_struct
         impl #name {
-            pub fn texture(&self) -> Texture2D {
+            pub fn texture(&self) -> macroquad::texture::Texture2D {
                 let resources = macroquad::experimental::collections::storage::get::<crate::resources::Resources>();
                 resources.#name_low
             }
