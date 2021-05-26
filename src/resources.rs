@@ -1,12 +1,7 @@
 use macroquad::prelude::*;
+use crate::pub_struct;
 
-macro_rules! pub_struct {
-    ($name:ident {$($field:ident: $t:ty,)*}) => {
-        pub struct $name {
-            $(pub $field: $t),*
-        }
-    }
-}
+
 pub_struct!( Resources {
     gold: Texture2D,
     hero: Texture2D,

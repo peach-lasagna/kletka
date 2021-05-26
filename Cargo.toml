@@ -5,6 +5,7 @@ edition = "2018"
 
 [dependencies]
 macroquad = "0.3"
+libmacro = { path = "libmacro" }
 
 # [target.'cfg(windows)'.dependencies]
 # winapi = { version = "0.3", features = ["winuser"] }
