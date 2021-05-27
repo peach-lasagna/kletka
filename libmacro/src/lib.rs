@@ -42,13 +42,14 @@ pub fn DefaultDraw(args: TokenStream, input: TokenStream) -> TokenStream {
     let a = &ii.attrs;
     let u = &ii.unsafety;
     let s = &ii.self_ty;
-    let t = &ii.trait_;
+    let (ba, pa, fo) = ii.trait_.unwrap();
     let g = &ii.generics;
     let i = &ii.impl_token;
     let it = &ii.items;
+    let d = &ii.defaultness;
     return quote! {
-        #a 
-        #u #i #g #t #s {
+       #(#a)*
+        #d #u #i #g #ba #pa #fo #s {
             #(#it)*
             
             fn draw(&self, x: f32, y: f32){
