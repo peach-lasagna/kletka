@@ -3,7 +3,7 @@ mod player;
 mod resources;
 mod map;
 mod structs;
-mod utils;
+mod interaction;
 mod gold;
 
 use macroquad::prelude::*;

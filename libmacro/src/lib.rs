@@ -1,9 +1,8 @@
 use proc_macro::TokenStream;
 use quote::quote;
-use syn::parse::Parser;
-use syn::{parse, parse_macro_input, ItemStruct, ItemImpl, ImplItem};
-// use macroquad::prelude::*;
+use syn::{parse, parse_macro_input, ItemStruct, ItemImpl};
 use proc_macro2::{Ident, Span};
+use syn::parse::Parser;
 
 
 #[proc_macro_attribute]
@@ -23,13 +22,13 @@ pub fn BaseObject(args: TokenStream, input: TokenStream) -> TokenStream {
         }
     }
 
-    let name_res = Ident::new(&format!("resources.{}",  name.to_string().to_lowercase())[..], Span::call_site());
+    let name_low = Ident::new(&(name.to_string().to_lowercase())[..], Span::call_site());
     return quote! {
         #item_struct
         impl #name {
-            pub fn get_texture(&self) -> macroquad::texture::Texture2D {
+            pub fn get_texture() -> macroquad::texture::Texture2D {
                 let resources = macroquad::experimental::collections::storage::get::<crate::resources::Resources>();
-                #name_res
+                resources.#name_low
             }
         }
     }
@@ -37,8 +36,8 @@ pub fn BaseObject(args: TokenStream, input: TokenStream) -> TokenStream {
 }
 
 #[proc_macro_attribute]
-pub fn DefaultDraw(args: TokenStream, input: TokenStream) -> TokenStream {
-    let mut ii= parse_macro_input!(input as ItemImpl);
+pub fn DefaultDraw(_args: TokenStream, input: TokenStream) -> TokenStream {
+    let ii= parse_macro_input!(input as ItemImpl);
     let a = &ii.attrs;
     let u = &ii.unsafety;
     let s = &ii.self_ty;

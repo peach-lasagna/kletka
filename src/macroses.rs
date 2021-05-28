@@ -10,12 +10,12 @@ macro_rules! pub_struct {
 #[macro_export]
 macro_rules! struct_w_weight {
     ($name:ident, weight=$weight:tt, count=$count:tt) => {
-        struct $name {
+        pub struct $name {
             weight: i16,
             count:  u16
         }
         impl $name {
-            fn new() -> Self{
+            pub fn new() -> Self{
                 Self { weight: $weight, count: $count }
             }
         }

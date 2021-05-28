@@ -33,8 +33,8 @@ pub_struct!( Items {
     gold: Gold,
 });
 
-pub_struct!( Stats{
-    hp: u8,
-    max_hp: u8,
-});
+// pub_struct!( Stats{
+//     hp: u8,
+//     max_hp: u8,
+// });
 

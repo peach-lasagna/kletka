@@ -1,4 +1,4 @@
-use crate::utils::PlayerInteraction;
+use crate::interaction::PlayerInteraction;
 use crate::structs::{Cells};
 use crate::resources::Resources;
 use macroquad::experimental::collections::storage;
@@ -22,14 +22,14 @@ pub fn decode_token(token: &str) -> Cells{
     }
 }
 
-pub fn get_cell_content(cell: Cells) ->  Box<dyn  PlayerInteraction> {
+pub fn get_cell_content(cell: Cells) -> impl PlayerInteraction {
     let resources = storage::get::<Resources>();
     let obj = match cell {
         Cells::Gold => Gold::new(),
         // Cells::Enemy => (),
         // Cells::Weapon => (r)
     };
-    Box::new(obj)
+    obj
 }
 
 pub fn get_matrix3x3<'a>(matrix: Matrix, x: usize, y: usize) -> Matrix{
